@@ -358,7 +358,7 @@ def draw_fonts(args):
 #plt.matshow(a)
 #plt.show()
 
-def gen_img_rows(outfile, parallel=True):
+def gen_img_rows(outfile, parallel=False):
     if parallel == True:
         p = multiprocessing.Pool()
         data = p.map(draw_fonts, allchars_label)
