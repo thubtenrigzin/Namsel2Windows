@@ -244,8 +244,8 @@ def draw_fonts(args):
                     surf.write_to_png(image_file)
         
             im = Image.open(fname)
-            os.remove(fname)
             im = im.convert('L')
+            os.remove(fname)
             a = np.asarray(im)
             a = trim(a)
             a = add_padding(a, padding=2)
