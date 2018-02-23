@@ -122,7 +122,7 @@ allchars_label = zip(range(len(allchars)),allchars)
 import shelve
 
 ## NORMAL DICT
-s = shelve.open('../allchars_dict2')
+s = shelve.open(r'..\allchars_dict2')
 s['allchars'] = dict((j,i) for i,j in allchars_label)
 s['label_chars'] = dict((i, j) for i,j in allchars_label)
 s.close()
@@ -239,7 +239,7 @@ def draw_fonts(args):
             context.set_source_rgb(0, 0, 0)
             pangocairo_context.update_layout(layout)
             pangocairo_context.show_layout(layout)
-            fname = "/tmp/%s%d.png" % (fontname, randint(0,20000000))
+            fname = r"\tmp\%s%d.png" % (fontname, randint(0,20000000))
             with open(fname, "wb") as image_file:
                     surf.write_to_png(image_file)
         
@@ -373,4 +373,4 @@ def gen_img_rows(outfile, parallel=True):
     
 
 if __name__ == '__main__':
-    gen_img_rows('../datasets/font-draw-samples.txt')
+    gen_img_rows(r'..\datasets\font-draw-samples.txt')
