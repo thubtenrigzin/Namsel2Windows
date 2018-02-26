@@ -59,15 +59,15 @@ word_parts = set(word_parts)
 
 PCA_TRANS = False
 
-trs_prob = np.load(open(local_file('stack_bigram_mat.npz')))
+trs_prob = np.load(open(local_file('stack_bigram_mat.npz'), 'rb'))
 trs_prob = trs_prob[trs_prob.files[0]]
 
-cdmap = pickle.load(open(local_file('extended_char_dig.pkl')))
+cdmap = pickle.load(open(local_file('extended_char_dig.pkl'), 'rb'))
 
 # HMM data structures
-trans_p = np.load(open(local_file('stack_bigram_logprob32.npz')))
+trans_p = np.load(open(local_file('stack_bigram_logprob32.npz'), 'rb'))
 trans_p = trans_p[trans_p.files[0]].transpose()
-start_p = np.load(open(local_file('stack_start_logprob32.npz')))
+start_p = np.load(open(local_file('stack_start_logprob32.npz'), 'rb'))
 start_p = start_p[start_p.files[0]]
 
 start_p_nonlog = np.exp(start_p)
