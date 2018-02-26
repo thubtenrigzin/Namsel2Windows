@@ -141,7 +141,7 @@ class PageRecognizer(object):
                 output.append(u'\n')
     
             out =  ''.join(output)
-            print out
+            #print out
         
             if text:
                 results = out
