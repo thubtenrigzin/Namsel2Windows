@@ -333,10 +333,11 @@ if __name__ == '__main__':
         if not os.path.isdir(args.imagepath):
             print 'Error: You must specify the name of a directory containing tif images in order to recognize a volume'
             sys.exit()
-        pool = multiprocessing.Pool()
+        #pool = multiprocessing.Pool()
         pages = glob.glob(os.path.join(args.imagepath, '*tif'))
         pages.sort()
-        results = pool.map(run_recognize,  pages)
+        #results = pool.map(run_recognize,  pages)
+        results = map(run_recognize,  pages)
         if args.format == 'text':
 
             with codecs.open(outfilename, 'w', 'utf-8') as outfile:
