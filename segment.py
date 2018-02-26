@@ -22,9 +22,9 @@ predict_log_proba = cls.predict_log_proba
 boundingRect = cv.boundingRect
 char_gaussians = PageElements.char_gaussians
 
-trans_p = load(open(local_file('stack_bigram_logprob32.npz')))
+trans_p = load(open(local_file('stack_bigram_logprob32.npz'), 'rb'))
 trans_p = trans_p[trans_p.files[0]].transpose()
-start_p = load(open(local_file('stack_start_logprob32.npz')))
+start_p = load(open(local_file('stack_start_logprob32.npz'), 'rb'))
 start_p = start_p[start_p.files[0]]
 n_states = trans_p.shape[0]
 
