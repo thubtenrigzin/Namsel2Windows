@@ -119,7 +119,7 @@ class TrainingData(object):
         for k, tt in enumerate(self.training):
             if tt[0] == label:
                 x = tt[1:].astype(np.uint8).reshape((32,32))*255
-                Image.fromarray(x).convert('L').save('/tmp/%d.tiff' % k)
+                Image.fromarray(x).convert('L').save(r'\tmp\%d.tiff' % k)
     
     def exp_data(self, core_smp_file = None):
         '''Load and organize primary datasets'''
@@ -136,16 +136,16 @@ class TrainingData(object):
             raise ValueError, 'Must specify a data sample file'
         
         training = np.genfromtxt(core_smp_file, np.uint32, delimiter=',')
-        training_tibchars = np.genfromtxt('datasets/tibcharsamples.txt', np.uint32, delimiter=',')        
-        training5 = np.genfromtxt('datasets/ui_samples.csv', np.uint32, delimiter=',')
+        training_tibchars = np.genfromtxt(r'datasets\tibcharsamples.txt', np.uint32, delimiter=',')        
+        training5 = np.genfromtxt(r'datasets\ui_samples.csv', np.uint32, delimiter=',')
         
         #########Training sets with degraded samples
 #        training5 = np.genfromtxt('/home/zr/home2/letters/phrinyik_labeled_samples_from_ui.csv', np.uint32, delimiter=',')
         ##########
          
-        training_alt = np.load('datasets/normalized_3216_to_3232_training.npy')
+        training_alt = np.load(r'datasets\normalized_3216_to_3232_training.npy')
         
-        for pklfile in glob.glob('datasets/*pkl'):
+        for pklfile in glob.glob(r'datasets\*pkl'):
             lpk = load_pkl_data(pklfile)
             print np.array(lpk).shape, pklfile
             training = np.append(training, load_pkl_data(pklfile), axis=0)
@@ -153,7 +153,7 @@ class TrainingData(object):
         training = np.append(training, training_tibchars, axis=0)
         training = np.append(training, training_alt, axis=0)
         training = np.append(training, training5, axis=0)        
-        symbols = np.genfromtxt('datasets/symbols.txt', np.uint32, delimiter=',')
+        symbols = np.genfromtxt(r'datasets\symbols.txt', np.uint32, delimiter=',')
         training = np.append(training, symbols, axis=0)
         
         
@@ -209,7 +209,7 @@ def rebuild_cls(pca_trans=False, rbf=True, logistic=True,
         y_train,x_train = shuffle(y_train,x_train)
     else:
         data = TrainingData()
-        data.exp_data(core_smp_file='datasets/font-draw-samples.txt')
+        data.exp_data(core_smp_file=r'datasets\font-draw-samples.txt')
         y_train = data.y_train
         x_train = data.transform_dataset()
         y_train,x_train = shuffle(y_train,x_train)
