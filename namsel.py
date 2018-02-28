@@ -328,7 +328,7 @@ if __name__ == '__main__':
                 outfile.write(results)
 
     elif args.action == 'recognize-volume':
-        import multiprocessing
+        #import multiprocessing
         import glob
         if not os.path.isdir(args.imagepath):
             print 'Error: You must specify the name of a directory containing tif images in order to recognize a volume'
