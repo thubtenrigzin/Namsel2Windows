@@ -2,7 +2,6 @@
 
 cd install
 
-SET nocert=--no-check-certificate
 SET addPath=c:\Python27;c:\gtk\bin;c:\Program Files\Scan Tailor
 
 Rem Python 2.7 - 64bit
