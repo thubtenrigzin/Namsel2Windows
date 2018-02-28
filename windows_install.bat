@@ -47,7 +47,7 @@ cd .\data_generation
 python font_draw.py
 
 cd ..\datasets
-unzip datapickles.zip
+..\install\unzip datapickles.zip
 
 cd ..
 python classify.py
