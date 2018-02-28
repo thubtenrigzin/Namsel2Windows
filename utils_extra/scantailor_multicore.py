@@ -62,9 +62,9 @@ def run_scantailor(folder, threshold, layout='single', processes=None):
         #processes = cpu_count()
     #p = Pool(processes=processes, maxtasksperchild=30)
     #p.map(process_tifs2, tifs)
-    #p.terminate()
     map(process_tifs2, tifs)
-    terminate()    
+    #p.terminate()
+
 
 if __name__ == '__main__':
     threshold = 0
