@@ -10,6 +10,8 @@ Check out our library partner for already OCR'd digital text: http://tbrc.org.
 
 ## Install:
 Open the console with the administrator privileges.
+
+The installation will completly work offline and it need 1 or 2 hours to be completed as the training datas need some times to be generated.
 ```bash
 windows_install.bat
 ```
