@@ -2,50 +2,38 @@
 
 cd install
 
+SET nocert=--no-check-certificate
+SET addPath=c:\Python27;c:\gtk\bin;c:\Program Files\Scan Tailor
+
 Rem Python 2.7 - 64bit
-	wget https://www.python.org/ftp/python/2.7.14/python-2.7.14.amd64.msi
-	msiexec /i python-2.7.14.amd64.msi /passive TARGETDIR=r:\Python27
-	del python-2.7.14.amd64.msi
-					path (avec l'installation?)
+msiexec /i python-2.7.14.amd64.msi /passive TARGETDIR=c:\Python27
 
 Rem VC
-	wget https://repo.saltstack.com/windows/dependencies/VCForPython27.msi
-	msiexec /i VCForPython27.msi /passive
-	del VCForPython27.msi
-					voir avec le path??
-						change le fichier python (nécessaire si path ?)
+msiexec /i VCForPython27.msi /passive
+copy /Y msvc9compiler.py C:\Python27\Lib\distutils\msvc9compiler.py
 
-Rem More Stuffs
-python -m pip install Cython numpy pillow sklearn simplejson scipy opencv-contrib-python
-	
-	Rem Downgrade scikit
-	pip install --upgrade scikit-learn==0.18.1
+Rem Scantailor
+unzip -o scantailor.zip -d "c:\Program Files\Scan Tailor"
 
 Rem GTK
-wget https://github.com/SpiNNakerManchester/SpiNNakerManchester.github.io/releases/download/v1.0-win64/gtk.-bundle_2.22.1-20101229_win64.zip
-unzip gtk.-bundle_2.22.1-20101229_win64.zip c:\gtk
-del gtk.-bundle_2.22.1-20101229_win64.zip
-set path=c:\gtk\bin;%PATH%
+unzip -o gtk+-bundle_2.22.1-20101229_win64.zip -d c:\gtk
 
 	Rem pycairo
-	wget https://github.com/SpiNNakerManchester/SpiNNakerManchester.github.io/releases/download/v1.0-win64/py2cairo-1.10.0.win-amd64-py2.7.exe
-	py2cairo-1.10.0.win-amd64-py2.7.exe
-	del py2cairo-1.10.0.win-amd64-py2.7.exe
+	unzip -o py2cairo-1.10.0.win-amd64-py2.7.zip -d c:\Python27
 
 	Rem pygtk
-	wget https://github.com/SpiNNakerManchester/SpiNNakerManchester.github.io/releases/download/v1.0-win64/pygtk-2.22.0.win-amd64-py2.7.exe
-	pygtk-2.22.0.win-amd64-py2.7.exe
-	del pygtk-2.22.0.win-amd64-py2.7.exe
-	
+	unzip -o pygtk-2.22.0.win-amd64-py2.7.zip -d c:\Python27
+		
 	Rem pygobject
-	wget https://github.com/SpiNNakerManchester/SpiNNakerManchester.github.io/releases/download/v1.0-win64/pygobject-2.28.6.win-amd64-py2.7.exe
-	pygobject-2.28.6.win-amd64-py2.7.exe
-	del pygobject-2.28.6.win-amd64-py2.7.exe
+	unzip -o pygobject-2.28.6.win-amd64-py2.7.zip -d c:\Python27
 
-Rem Santailor
-wget https://github.com/scantailor/scantailor/releases/download/RELEASE_0_9_11_1/scantailor-0.9.11.1-64bit-install.exe
-scantailor-0.9.11.1-64bit-install.exe
-del scantailor-0.9.11.1-64bit-install.exe
+setX /M PATH "%PATH%;%addPath%"
+SET PATH=%PATH%;%addPath%
+
+rem More stuffs
+cd packages
+python -m pip install Cython-0.27.3-cp27-cp27m-win_amd64.whl numpy-1.14.1-cp27-none-win_amd64.whl opencv_contrib_python-3.4.0.12-cp27-cp27m-win_amd64.whl Pillow-5.0.0-cp27-cp27m-win_amd64.whl scikit_learn-0.19.1-cp27-cp27m-win_amd64.whl scipy-1.0.0-cp27-none-win_amd64.whl simplejson-3.13.2-cp27-cp27m-win_amd64.whl sklearn-0.0.tar.gz
+cd..
 
 Rem Fonts installation
 cscript install-fonts.vbs
@@ -55,7 +43,7 @@ cd ..
 python setup.py build_ext --inplace
 
 mkdir \tmp
-cd ..\data_generation
+cd .\data_generation
 python font_draw.py
 
 cd ..\datasets
