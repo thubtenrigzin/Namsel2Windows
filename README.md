@@ -1,29 +1,26 @@
 # Namsel OCR
 An OCR application focused on machine-print Tibetan text
 
-Tested only on a fresh install of Mac Os 10.13 High Sierra. 
+Tested only on a fresh install of Windows 7/64bits.
+Namsel will only work on a Windows 64bits.
 
 An overview of the Namsel project can be found in [our article in the journal Himalayan Linguistics](https://escholarship.org/uc/item/6d5781k5).
 
 Check out our library partner for already OCR'd digital text: http://tbrc.org. 
 
 ## Install:
+Open the console with the administrator privileges.
 ```bash
-$ bash mac_install.sh
+windows_install.bat
 ```
 
 This will install required packages, build the cython modules, unpack datasets, and initiate training for the classifiers. Note that training (classify.py) takes up to an hour or more to complete.
-
-scantailor-cli is installed by default in "/opt/local/bin". Remember to add it to your $PATH in order to call Scantailor for the preprocessing tasks.
-```bash
-$ export PATH="/opt/local/bin/:$PATH"
-```
 
 ## Quickstart
 
 To start, run preprocessing on folder of images:
 ```bash
-$ ./namsel.py preprocess ~/myfolder
+python namsel.py preprocess ~/myfolder
 ```
 
 This will save new, preprocessed image in ~/myfolder/out. Preprocessing will take a few minutes depending on how many CPUs you have available and how many images are in the folder.
@@ -31,13 +28,13 @@ This will save new, preprocessed image in ~/myfolder/out. Preprocessing will tak
 Next, run OCR. If pages are "book" (rather than "pecha") - style pages, do the following:
 
 ```bash
-$ ./namsel.py recognize-volume --page_type=book --format=text ~/myfolder/out
+python namsel.py recognize-volume --page_type=book --format=text ~/myfolder/out
 ```
 
 To OCR a single page, use the *recognize-page* command and specify a single page file:
 
 ```bash
-$ ./namsel.py recognize-page --page_type=book --format=text ~/myfolder/out/image-01.tif
+python namsel.py recognize-page --page_type=book --format=text ~/myfolder/out/image-01.tif
 ```
 
 OCR will run and save the results in a file called ocr_output.txt.
@@ -87,7 +84,7 @@ python scantailor_multicore.py <my-image-folder> [threshold (optional)]
 For example
 
 ```bash
-$ python scantailor_multicore.py my-image-folder -20
+python scantailor_multicore.py my-image-folder -20
 ```
 
 ...generates a folder called "out" with images that have been cropped, cleaned, thinned, and deskewed by Scantailor.
@@ -125,7 +122,7 @@ The amount of thinning or thickening Scantailor will do. Good values are between
 Example command:
 
 ```bash
-$ ./namsel preprocess --layout=double --st_threshold=-15 /path/to/my-folder-of-tiffs
+python namsel.py preprocess --layout=double --st_threshold=-15 /path/to/my-folder-of-tiffs
 ```
 
 This command will run Scantailor on a folder of tiff-formatted images, command it to split double pages and apply thinning to the characters on the pages.
@@ -133,12 +130,12 @@ This command will run Scantailor on a folder of tiff-formatted images, command i
 To run Namsel, simply specify the action you'd like Namsel to take and point the the image or images you would like processed. For example, to OCR a single tif image, run:
 
 ```bash
-$ ./namsel recognize-page mytibetantextimage.tif
+python namsel.py recognize-page mytibetantextimage.tif
 ```
 
 For an entire volume:
 ```bash
-./namsel recognize-volume folder-of-tiff-images
+python namsel.py recognize-volume folder-of-tiff-images
 ```
 
 Other options are "preprocess" and "isolate-lines." Preprocessing is discussed below. "Isolate-lines" runs the Namsel pipeline, but only until the line separation stage and outputs the segmented lines as tif images in a directory called "separated-lines" that is created within the parent directory. (TO BE IMPLEMENTED)
@@ -193,22 +190,12 @@ Identify and remove horizontal rule or line on the top of a page. Set to True wh
 Rarely used. The number of iterations when dilating text in line cut. Increase this value when need to blob things together. Default is 4 iterations.
 
 ### Optional: generate data yourself from fonts
-This is strictly optional. The provided datasets already include these datapoints. These commands are also run automatically if you run mac_install.sh.
+This is strictly optional. The provided datasets already include these datapoints. These commands are also run automatically if you run windows_install.sh.
 
-Install fonts:
-
+Install fonts by copying them into the c:\Windows\fonts directory and generate the font-derived datasets:
 ```bash
-$ cd namsel-ocr
-$ sudo apt-get install python-cairo
-$ mkdir -p ~/.fonts
-$ cp data_generation/fonts/*ttf ~/.fonts/
-$ fc-cache -f -v
-```
-
-Generate the font-derived datasets:
-```bash
-$ cd data_generation
-$ python font_draw.py
+cd data_generation
+python font_draw.py
 ```
 
 ### About the name
