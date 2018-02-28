@@ -16,7 +16,7 @@ The installation will completely work offline and need 1 or 2 hours to be comple
 windows_install.bat
 ```
 
-This will install required packages, build the cython modules, unpack datasets, and initiate training for the classifiers. Note that training (classify.py) takes up to an hour or more to complete.
+This will install the version 2.7 of Python (actually, the program is not compatible with Python 3), the required packages, build the cython modules, unpack datasets, and initiate training for the classifiers. Note that training (classify.py) takes up to an hour or more to complete.
 
 ## Quickstart
 
