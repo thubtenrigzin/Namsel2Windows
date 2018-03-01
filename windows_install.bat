@@ -31,7 +31,7 @@ SET PATH=%PATH%;%addPath%
 
 rem More stuffs
 cd packages
-c:\Python27\python -m pip install Cython-0.27.3-cp27-cp27m-win_amd64.whl numpy-1.14.1-cp27-none-win_amd64.whl opencv_contrib_python-3.4.0.12-cp27-cp27m-win_amd64.whl Pillow-5.0.0-cp27-cp27m-win_amd64.whl scikit_learn-0.19.1-cp27-cp27m-win_amd64.whl scipy-1.0.0-cp27-none-win_amd64.whl simplejson-3.13.2-cp27-cp27m-win_amd64.whl sklearn-0.0.tar.gz
+c:\Python27\python -m pip install Cython-0.27.3-cp27-cp27m-win_amd64.whl numpy-1.14.1-cp27-none-win_amd64.whl opencv_contrib_python-3.4.0.12-cp27-cp27m-win_amd64.whl Pillow-5.0.0-cp27-cp27m-win_amd64.whl scikit_learn-0.18.1-cp27-cp27m-win_amd64.whl scipy-1.0.0-cp27-none-win_amd64.whl simplejson-3.13.2-cp27-cp27m-win_amd64.whl sklearn-0.0.tar.gz
 cd..
 
 Rem Fonts installation
