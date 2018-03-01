@@ -1,8 +1,8 @@
 # Namsel OCR
 An OCR application focused on machine-print Tibetan text
 
-Tested only on a fresh install of Windows 7/64bits.
-Namsel will only work on a Windows 64bits.
+Tested on a fresh install of Windows 7/64bits & Windows 10/64bits.
+Namsel will only work on 64 bits Windows versions.
 
 An overview of the Namsel project can be found in [our article in the journal Himalayan Linguistics](https://escholarship.org/uc/item/6d5781k5).
 
