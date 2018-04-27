@@ -1,5 +1,5 @@
 
-This repository is now archived and closed, as all the commits were merged in (Namsel_OCR](https://github.com/thubtenrigzin/Namsel_OCR)
+This repository is now archived and closed, as all the commits were merged in [Namsel_OCR](https://github.com/thubtenrigzin/Namsel_OCR)
 
 ---
 
